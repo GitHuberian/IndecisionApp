@@ -1,10 +1,10 @@
-//JSX - Javascript XML
+'use strict';
 
-// var template = <p>Indecision APP</p>;
-// var appRoot = document.getElementById('app');
-
-// ReactDOM.render(template, appRoot);
-
-var template = React.createElement("p", null, "Indecision APP");
+var template = React.createElement(
+  'h2',
+  null,
+  'Indecision APP'
+);
 var appRoot = document.getElementById('app');
+
 ReactDOM.render(template, appRoot);

@@ -1,0 +1,12 @@
+{
+  "name": "IndecisionApp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/GitHuberian/IndecisionApp.git",
+  "author": "Nancy <ng.toledo@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "6.24.1"
+  }
+}
