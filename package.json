@@ -7,6 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "6.24.1"
+    "babel-preset-react": "6.24.1",
+    "styled-components": "^4.3.2"
   }
 }
