@@ -22,6 +22,11 @@ var removeAll = function removeAll() {
     templateRender();
 };
 
+var makeDecision = function makeDecision() {
+    var randomNumber = Math.floor(Math.random() * templateInfo.options.length);
+    console.log(randomNumber);
+};
+
 var appRoot = document.getElementById('app');
 var templateRender = function templateRender() {
     var template = React.createElement(
@@ -43,6 +48,11 @@ var templateRender = function templateRender() {
             templateInfo.options.length > 0 ? 'Here are your options' : 'No options'
         ),
         React.createElement(
+            'button',
+            { disabled: templateInfo.options.length === 0, onClick: makeDecision },
+            'What should I do?'
+        ),
+        React.createElement(
             'ol',
             null,
             templateInfo.options.map(function (current) {
@@ -54,11 +64,6 @@ var templateRender = function templateRender() {
             })
         ),
         React.createElement(
-            'button',
-            { onClick: removeAll },
-            'Remove All'
-        ),
-        React.createElement(
             'form',
             { onSubmit: onFormSubmit },
             React.createElement('input', { type: 'text', name: 'option' }),
@@ -67,6 +72,11 @@ var templateRender = function templateRender() {
                 null,
                 'Add Option'
             )
+        ),
+        React.createElement(
+            'button',
+            { disabled: templateInfo.options.length === 0, onClick: removeAll },
+            'Remove All'
         )
     );
     ReactDOM.render(template, appRoot);

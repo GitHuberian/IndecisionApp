@@ -21,6 +21,12 @@ const removeAll = () =>{
     templateRender();
 };
 
+const makeDecision = () =>{
+    const randomNumber = Math.floor(Math.random() * templateInfo.options.length);
+    console.log(randomNumber);
+    
+};
+
 const appRoot = document.getElementById('app');
 const templateRender = () => {
     const template =(
@@ -28,7 +34,7 @@ const templateRender = () => {
             <h2>{templateInfo.name}</h2> 
             {templateInfo.description && <p>{templateInfo.description}</p>}
             <p>{templateInfo.options.length > 0 ? 'Here are your options' : 'No options'}</p>
-            
+            <button disabled={templateInfo.options.length === 0} onClick={makeDecision}>What should I do?</button>
             <ol>
                 {
                  templateInfo.options.map((current) => {
@@ -36,11 +42,11 @@ const templateRender = () => {
                 })
                 }
             </ol>
-            <button onClick={removeAll}>Remove All</button>
             <form onSubmit={onFormSubmit}>
                 <input type="text" name="option"/>
                 <button>Add Option</button>
             </form>
+            <button disabled={templateInfo.options.length === 0} onClick={removeAll}>Remove All</button>
         </div>);
         ReactDOM.render(template, appRoot);
 };
