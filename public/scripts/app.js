@@ -3,28 +3,27 @@
 var templateInfo = {
     name: 'Indecision APP',
     description: 'Put your life in the hands of a computer',
-    options: ['Option One', 'Option Two']
+    options: []
 };
 
-var count = 0;
-var addOne = function addOne() {
-    count++;
-    renderCounterApp();
+var onFormSubmit = function onFormSubmit(e) {
+    e.preventDefault();
+
+    var option = e.target.elements.option.value;
+    if (option) {
+        templateInfo.options.push(option);
+        e.target.elements.option.value = '';
+        templateRender();
+    }
 };
 
-var minusOne = function minusOne() {
-    count--;
-    renderCounterApp();
-};
-
-var reset = function reset() {
-    count = 0;
-    renderCounterApp();
+var removeAll = function removeAll() {
+    templateInfo.options = [];
+    templateRender();
 };
 
 var appRoot = document.getElementById('app');
-
-var renderCounterApp = function renderCounterApp() {
+var templateRender = function templateRender() {
     var template = React.createElement(
         'div',
         null,
@@ -46,44 +45,31 @@ var renderCounterApp = function renderCounterApp() {
         React.createElement(
             'ol',
             null,
-            React.createElement(
-                'li',
-                null,
-                'One'
-            ),
-            React.createElement(
-                'li',
-                null,
-                'Two'
-            )
+            templateInfo.options.map(function (current) {
+                return React.createElement(
+                    'li',
+                    { key: current },
+                    current
+                );
+            })
         ),
         React.createElement(
-            'div',
-            null,
+            'button',
+            { onClick: removeAll },
+            'Remove All'
+        ),
+        React.createElement(
+            'form',
+            { onSubmit: onFormSubmit },
+            React.createElement('input', { type: 'text', name: 'option' }),
             React.createElement(
-                'h3',
+                'button',
                 null,
-                'Count: ',
-                count
-            ),
-            React.createElement(
-                'button',
-                { onClick: addOne, className: 'button' },
-                '+1'
-            ),
-            React.createElement(
-                'button',
-                { onClick: minusOne, className: 'button' },
-                '-1'
-            ),
-            React.createElement(
-                'button',
-                { onClick: reset, className: 'button' },
-                'RESET'
+                'Add Option'
             )
         )
     );
     ReactDOM.render(template, appRoot);
 };
 
-renderCounterApp();
+templateRender();
