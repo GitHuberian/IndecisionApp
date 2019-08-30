@@ -49,7 +49,7 @@ var templateRender = function templateRender() {
         ),
         React.createElement(
             'button',
-            { disabled: templateInfo.options.length === 0, onClick: makeDecision },
+            { id: 'btn-decision', disabled: templateInfo.options.length === 0, onClick: makeDecision },
             'What should I do?'
         ),
         React.createElement(
@@ -69,13 +69,13 @@ var templateRender = function templateRender() {
             React.createElement('input', { type: 'text', name: 'option' }),
             React.createElement(
                 'button',
-                null,
+                { id: 'btn-add' },
                 'Add Option'
             )
         ),
         React.createElement(
             'button',
-            { disabled: templateInfo.options.length === 0, onClick: removeAll },
+            { id: 'btn-remove', disabled: templateInfo.options.length === 0, onClick: removeAll },
             'Remove All'
         )
     );

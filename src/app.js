@@ -34,7 +34,7 @@ const templateRender = () => {
             <h2>{templateInfo.name}</h2> 
             {templateInfo.description && <p>{templateInfo.description}</p>}
             <p>{templateInfo.options.length > 0 ? 'Here are your options' : 'No options'}</p>
-            <button disabled={templateInfo.options.length === 0} onClick={makeDecision}>What should I do?</button>
+            <button id="btn-decision" disabled={templateInfo.options.length === 0} onClick={makeDecision}>What should I do?</button>
             <ol>
                 {
                  templateInfo.options.map((current) => {
@@ -44,9 +44,9 @@ const templateRender = () => {
             </ol>
             <form onSubmit={onFormSubmit}>
                 <input type="text" name="option"/>
-                <button>Add Option</button>
+                <button id="btn-add">Add Option</button>
             </form>
-            <button disabled={templateInfo.options.length === 0} onClick={removeAll}>Remove All</button>
+            <button id="btn-remove" disabled={templateInfo.options.length === 0} onClick={removeAll}>Remove All</button>
         </div>);
         ReactDOM.render(template, appRoot);
 };
