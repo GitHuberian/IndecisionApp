@@ -24,7 +24,11 @@ var removeAll = function removeAll() {
 
 var makeDecision = function makeDecision() {
     var randomNumber = Math.floor(Math.random() * templateInfo.options.length);
-    console.log(randomNumber);
+    var arr = document.querySelector(".options-list").getElementsByTagName("LI");
+    for (var i = 0; i < arr.length; i++) {
+        arr[i].style.background = "transparent";
+    }
+    arr[randomNumber].style.background = "#feca57";
 };
 
 var appRoot = document.getElementById('app');
@@ -54,7 +58,7 @@ var templateRender = function templateRender() {
         ),
         React.createElement(
             'ol',
-            null,
+            { className: 'options-list' },
             templateInfo.options.map(function (current) {
                 return React.createElement(
                     'li',

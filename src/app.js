@@ -23,7 +23,11 @@ const removeAll = () =>{
 
 const makeDecision = () =>{
     const randomNumber = Math.floor(Math.random() * templateInfo.options.length);
-    console.log(randomNumber);
+    let arr = document.querySelector(".options-list").getElementsByTagName("LI");
+    for(let i = 0; i<arr.length; i++){
+        arr[i].style.background = "transparent";
+    } 
+    arr[randomNumber].style.background = "#feca57";
     
 };
 
@@ -35,7 +39,7 @@ const templateRender = () => {
             {templateInfo.description && <p>{templateInfo.description}</p>}
             <p>{templateInfo.options.length > 0 ? 'Here are your options' : 'No options'}</p>
             <button id="btn-decision" disabled={templateInfo.options.length === 0} onClick={makeDecision}>What should I do?</button>
-            <ol>
+            <ol className="options-list">
                 {
                  templateInfo.options.map((current) => {
                     return <li key={current}>{current}</li>
