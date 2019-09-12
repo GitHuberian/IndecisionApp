@@ -135,7 +135,7 @@ class AddOption extends React.Component {
         <button id="btn-remove"
           onClick={this.props.removeAll}
           disabled={!this.props.hasOptions}
-        >RemoveAll</button>
+        >Clear list</button>
         {this.state.error && <p className="error">{this.state.error}</p>}
       </div>
     );

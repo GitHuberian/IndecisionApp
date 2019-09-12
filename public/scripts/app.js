@@ -256,7 +256,7 @@ var AddOption = function (_React$Component6) {
             onClick: this.props.removeAll,
             disabled: !this.props.hasOptions
           },
-          "RemoveAll"
+          "Clear list"
         ),
         this.state.error && React.createElement(
           "p",
