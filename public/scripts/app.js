@@ -67,24 +67,22 @@ var IndecisionApp = function (_React$Component) {
     value: function render() {
       var title = "Indecision App";
       var subtitle = "Put your life in the hands of a computer";
-      return (//title, subtitle and option arr as a parameter, props
-        React.createElement(
-          "div",
-          { className: "main" },
-          React.createElement(Header, { title: title, subtitle: subtitle }),
-          React.createElement(Action, {
-            hasOptions: this.state.options.length > 0,
-            handlePick: this.handlePick
-          }),
-          React.createElement(Options, {
-            options_number: this.state.options
+      return React.createElement(
+        "div",
+        { className: "main" },
+        React.createElement(Header, { title: title, subtitle: subtitle }),
+        React.createElement(Action, {
+          hasOptions: this.state.options.length > 0,
+          handlePick: this.handlePick
+        }),
+        React.createElement(Options, {
+          options_number: this.state.options
 
-          }),
-          React.createElement(AddOption, {
-            hasOptions: this.state.options.length > 0,
-            addOption: this.addOption,
-            removeAll: this.removeAll })
-        )
+        }),
+        React.createElement(AddOption, {
+          hasOptions: this.state.options.length > 0,
+          addOption: this.addOption,
+          removeAll: this.removeAll })
       );
     }
   }]);
@@ -165,7 +163,6 @@ var Options = function (_React$Component4) {
 
   _createClass(Options, [{
     key: "render",
-    //Render new map for echa option and addign the optionText prop
     value: function render() {
       return React.createElement(
         "div",
@@ -228,7 +225,7 @@ var AddOption = function (_React$Component6) {
     value: function addOption(e) {
       e.preventDefault();
 
-      var option = e.target.elements.option.value.trim(); //name of the input
+      var option = e.target.elements.option.value.trim();
       var error = this.props.addOption(option);
       this.setState(function () {
         return { error: error };

@@ -42,7 +42,7 @@ class IndecisionApp extends React.Component{
     render(){
         const title= "Indecision App";
         const subtitle = "Put your life in the hands of a computer";
-        return(//title, subtitle and option arr as a parameter, props
+        return(
             <div className="main">
                 <Header title={title} subtitle={subtitle}/>
                 <Action 
@@ -88,7 +88,7 @@ class Action extends React.Component{
   }
 }
 
-class Options extends React.Component {//Render new map for echa option and addign the optionText prop
+class Options extends React.Component {
   render() {
     return (
       <div>
@@ -119,7 +119,7 @@ class AddOption extends React.Component {
   addOption(e){
     e.preventDefault();
 
-    const option = e.target.elements.option.value.trim();//name of the input
+    const option = e.target.elements.option.value.trim();
     const error = this.props.addOption(option);
     this.setState(()=>{
       return{ error };
