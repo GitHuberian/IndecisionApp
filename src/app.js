@@ -4,17 +4,34 @@ class IndecisionApp extends React.Component{
       this.removeAll = this.removeAll.bind(this);
       this.handlePick = this.handlePick.bind(this);
       this.addOption = this.addOption.bind(this);
+      this.removeOption = this.removeOption.bind(this);
       this.state = {
         options : []
       };
     }
-    removeAll(){
-      this.setState(()=>{
-        return{
-          options: [] 
-        };
-      });
+    componentDidMount(){
+      try {
+        const json = localStorage.getItem('options');
+      const options = JSON.parse(json);
+
+      if(options){
+        this.setState(()=> ({ options }));
+      }
+      } catch (error) {
+        console.log('Not valid data');
+      }
     }
+    componentDidUpdate(prevProps, prevState){
+      if(prevState.options.length!==this.state.options.length)
+      {
+        const json = JSON.stringify(this.state.options);
+        localStorage.setItem('options', json);
+      }
+    }
+    removeAll(){
+      this.setState(()=> ({ options: [] }));
+    }
+
     handlePick(){
       const randomNumber = Math.floor(Math.random() * this.state.options.length);
       let arr = document.querySelector(".options-list").getElementsByTagName("LI");
@@ -23,6 +40,7 @@ class IndecisionApp extends React.Component{
       } 
       arr[randomNumber].style.background = "#feca57";
     }
+
     addOption(option){
       if(!option){
         document.getElementById('option').focus();
@@ -31,14 +49,19 @@ class IndecisionApp extends React.Component{
         document.getElementById('option').focus();
         return 'This option already exists';
       } 
-      this.setState((prevState)=>{
-        return{
-          options: prevState.options.concat([option])
-        };
-      });
+      this.setState((prevState)=> ({ options: prevState.options.concat([option]) }));
       document.getElementById('option').value = '';
       document.getElementById('option').focus();
     }
+
+    removeOption(optionToRemove){
+      this.setState((prevState)=>({
+        options: prevState.options.filter((option)=>{
+          return optionToRemove !== option;
+        })
+      }));
+    }
+
     render(){
         const title= "Indecision App";
         const subtitle = "Put your life in the hands of a computer";
@@ -51,7 +74,7 @@ class IndecisionApp extends React.Component{
                   />
                 <Options 
                   options_number={this.state.options} 
-                  
+                  removeOption={this.removeOption}
                 />
                 <AddOption 
                   hasOptions={this.state.options.length > 0}
@@ -62,50 +85,58 @@ class IndecisionApp extends React.Component{
     }
 }
 
-class Header extends React.Component {
-  render() {
+const Header = (props) => {
     return (
       <div>
-        <h1>{this.props.title}</h1>
-        <h2>{this.props.subtitle}</h2>
+        <h1>{props.title}</h1>
+        <h2>{props.subtitle}</h2>
       </div>
     );
-  }
+};
+
+const Action = (props) =>{
+  return (
+    <div>
+      <button id="btn-decision"
+        onClick={props.handlePick}
+        disabled={!props.hasOptions}
+      >
+        What should I do?...
+      </button>
+    </div>
+  );
 }
 
-class Action extends React.Component{
-  render() {
-    return (
-      <div>
-        <button id="btn-decision"
-          onClick={this.props.handlePick}
-          disabled={!this.props.hasOptions}
-        >
-          What should I do?...
-        </button>
-      </div>
-    );
-  }
+const Options = (props) =>{
+  return (
+    <div>
+      <ol className="options-list">
+       {props.options_number.map((current) => (
+         <Option 
+            key={current} 
+            optionText = {current} 
+            removeOption={props.removeOption}
+          />
+       ))} 
+      </ol>
+    </div>
+  );
 }
 
-class Options extends React.Component {
-  render() {
-    return (
-      <div>
-        <ol className="options-list">
-         {this.props.options_number.map((current) => <Option key={current} optionText = {current} />)} 
-        </ol>
-      </div>
-    );
-  }
-}
-
-class Option extends React.Component{
-    render(){
-        return(
-          <li>Option: {this.props.optionText}</li>
-        );
-    }
+const Option = (props) =>{
+  return(
+    <li>Option: {props.optionText} 
+      <a 
+        onClick={(e) => {
+          props.removeOption(props.optionText);
+            }
+          }>
+             <i className="material-icons">
+             cancel
+             </i>
+      </a>
+    </li>
+  );
 }
 
 class AddOption extends React.Component {
@@ -121,9 +152,7 @@ class AddOption extends React.Component {
 
     const option = e.target.elements.option.value.trim();
     const error = this.props.addOption(option);
-    this.setState(()=>{
-      return{ error };
-    });
+    this.setState(()=>({ error }));
   }
   render() {
     return (
