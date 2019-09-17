@@ -71,17 +71,13 @@ var IndecisionApp = function (_React$Component) {
     key: 'addOption',
     value: function addOption(option) {
       if (!option) {
-        document.getElementById('option').focus();
         return 'Enter valid value to add item';
       } else if (this.state.options.indexOf(option) > -1) {
-        document.getElementById('option').focus();
         return 'This option already exists';
       }
       this.setState(function (prevState) {
         return { options: prevState.options.concat([option]) };
       });
-      document.getElementById('option').value = '';
-      document.getElementById('option').focus();
     }
   }, {
     key: 'removeOption',
@@ -158,6 +154,11 @@ var Options = function Options(props) {
   return React.createElement(
     'div',
     null,
+    props.options_number.length === 0 && React.createElement(
+      'p',
+      null,
+      'Please add an option to get started!'
+    ),
     React.createElement(
       'ol',
       { className: 'options-list' },
@@ -218,6 +219,10 @@ var AddOption = function (_React$Component2) {
       this.setState(function () {
         return { error: error };
       });
+      if (!error) {
+        e.target.elements.option.value = '';
+      }
+      e.target.elements.option.focus();
     }
   }, {
     key: 'render',

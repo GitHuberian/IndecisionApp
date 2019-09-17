@@ -43,15 +43,11 @@ class IndecisionApp extends React.Component{
 
     addOption(option){
       if(!option){
-        document.getElementById('option').focus();
         return 'Enter valid value to add item';
       } else if(this.state.options.indexOf(option)>-1){
-        document.getElementById('option').focus();
         return 'This option already exists';
       } 
-      this.setState((prevState)=> ({ options: prevState.options.concat([option]) }));
-      document.getElementById('option').value = '';
-      document.getElementById('option').focus();
+      this.setState((prevState)=> ({ options: prevState.options.concat([option]) })); 
     }
 
     removeOption(optionToRemove){
@@ -110,6 +106,7 @@ const Action = (props) =>{
 const Options = (props) =>{
   return (
     <div>
+      {props.options_number.length === 0 && <p>Please add an option to get started!</p>}
       <ol className="options-list">
        {props.options_number.map((current) => (
          <Option 
@@ -153,6 +150,10 @@ class AddOption extends React.Component {
     const option = e.target.elements.option.value.trim();
     const error = this.props.addOption(option);
     this.setState(()=>({ error }));
+    if(!error){
+      e.target.elements.option.value = '';
+    }
+    e.target.elements.option.focus();
   }
   render() {
     return (
