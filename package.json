@@ -18,7 +18,7 @@
   },
   "scripts": {
     "serve": "live-server public/",
-    "build": "webpack --config webpack.config.js --watch"
+    "build-wp": "webpack --config webpack.config.js --watch"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
