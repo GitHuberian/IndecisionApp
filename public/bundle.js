@@ -500,185 +500,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_AddOption__ = __webpack_require__(17);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_IndecisionApp__ = __webpack_require__(22);
 
 
 
-
-
-var IndecisionApp =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(IndecisionApp, _React$Component);
-
-  function IndecisionApp(props) {
-    var _this;
-
-    _classCallCheck(this, IndecisionApp);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(IndecisionApp).call(this, props));
-    _this.removeAll = _this.removeAll.bind(_assertThisInitialized(_this));
-    _this.handlePick = _this.handlePick.bind(_assertThisInitialized(_this));
-    _this.addOption = _this.addOption.bind(_assertThisInitialized(_this));
-    _this.removeOption = _this.removeOption.bind(_assertThisInitialized(_this));
-    _this.state = {
-      options: []
-    };
-    return _this;
-  }
-
-  _createClass(IndecisionApp, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      try {
-        var json = localStorage.getItem('options');
-        var options = JSON.parse(json);
-
-        if (options) {
-          this.setState(function () {
-            return {
-              options: options
-            };
-          });
-        }
-      } catch (error) {
-        console.log('Not valid data');
-      }
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps, prevState) {
-      if (prevState.options.length !== this.state.options.length) {
-        var json = JSON.stringify(this.state.options);
-        localStorage.setItem('options', json);
-      }
-    }
-  }, {
-    key: "removeAll",
-    value: function removeAll() {
-      this.setState(function () {
-        return {
-          options: []
-        };
-      });
-    }
-  }, {
-    key: "handlePick",
-    value: function handlePick() {
-      var randomNumber = Math.floor(Math.random() * this.state.options.length);
-      var arr = document.querySelector(".options-list").getElementsByTagName("LI");
-
-      for (var i = 0; i < arr.length; i++) {
-        arr[i].style.background = "transparent";
-      }
-
-      arr[randomNumber].style.background = "#feca57";
-    }
-  }, {
-    key: "addOption",
-    value: function addOption(option) {
-      if (!option) {
-        return 'Enter valid value to add item';
-      } else if (this.state.options.indexOf(option) > -1) {
-        return 'This option already exists';
-      }
-
-      this.setState(function (prevState) {
-        return {
-          options: prevState.options.concat([option])
-        };
-      });
-    }
-  }, {
-    key: "removeOption",
-    value: function removeOption(optionToRemove) {
-      this.setState(function (prevState) {
-        return {
-          options: prevState.options.filter(function (option) {
-            return optionToRemove !== option;
-          })
-        };
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var title = "Indecision App";
-      var subtitle = "Put your life in the hands of a computer";
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-        className: "main"
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Header, {
-        title: title,
-        subtitle: subtitle
-      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Action, {
-        hasOptions: this.state.options.length > 0,
-        handlePick: this.handlePick
-      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Options, {
-        options_number: this.state.options,
-        removeOption: this.removeOption
-      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_AddOption__["a" /* default */], {
-        hasOptions: this.state.options.length > 0,
-        addOption: this.addOption,
-        removeAll: this.removeAll
-      }));
-    }
-  }]);
-
-  return IndecisionApp;
-}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
-
-var Header = function Header(props) {
-  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, props.title), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h2", null, props.subtitle));
-};
-
-var Action = function Action(props) {
-  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", {
-    id: "btn-decision",
-    onClick: props.handlePick,
-    disabled: !props.hasOptions
-  }, "What should I do?..."));
-};
-
-var Options = function Options(props) {
-  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, props.options_number.length === 0 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", null, "Please add an option to get started!"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("ol", {
-    className: "options-list"
-  }, props.options_number.map(function (current) {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Option, {
-      key: current,
-      optionText: current,
-      removeOption: props.removeOption
-    });
-  })));
-};
-
-var Option = function Option(props) {
-  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("li", null, "Option: ", props.optionText, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
-    onClick: function onClick(e) {
-      props.removeOption(props.optionText);
-    }
-  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", {
-    className: "material-icons"
-  }, "cancel")));
-};
-
-__WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(IndecisionApp, null), document.getElementById('app'));
+__WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_IndecisionApp__["a" /* default */], null), document.getElementById('app'));
 
 /***/ }),
 /* 6 */
@@ -30062,6 +29888,232 @@ function (_React$Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 
+
+/***/ }),
+/* 18 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+
+/* harmony default export */ __webpack_exports__["a"] = (function (props) {
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("li", null, "Option: ", props.optionText, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
+    onClick: function onClick(e) {
+      props.removeOption(props.optionText);
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", {
+    className: "material-icons"
+  }, "cancel")));
+});
+
+/***/ }),
+/* 19 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+
+/* harmony default export */ __webpack_exports__["a"] = (function (props) {
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, props.title), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h2", null, props.subtitle));
+});
+
+/***/ }),
+/* 20 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+
+/* harmony default export */ __webpack_exports__["a"] = (function (props) {
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", {
+    id: "btn-decision",
+    onClick: props.handlePick,
+    disabled: !props.hasOptions
+  }, "What should I do?..."));
+});
+
+/***/ }),
+/* 21 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Option__ = __webpack_require__(18);
+
+
+/* harmony default export */ __webpack_exports__["a"] = (function (props) {
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, props.options_number.length === 0 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", null, "Please add an option to get started!"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("ol", {
+    className: "options-list"
+  }, props.options_number.map(function (current) {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Option__["a" /* default */], {
+      key: current,
+      optionText: current,
+      removeOption: props.removeOption
+    });
+  })));
+});
+
+/***/ }),
+/* 22 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AddOption__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Options__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Header__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Action__ = __webpack_require__(20);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+var IndecisionApp =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(IndecisionApp, _React$Component);
+
+  function IndecisionApp(props) {
+    var _this;
+
+    _classCallCheck(this, IndecisionApp);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(IndecisionApp).call(this, props));
+    _this.removeAll = _this.removeAll.bind(_assertThisInitialized(_this));
+    _this.handlePick = _this.handlePick.bind(_assertThisInitialized(_this));
+    _this.addOption = _this.addOption.bind(_assertThisInitialized(_this));
+    _this.removeOption = _this.removeOption.bind(_assertThisInitialized(_this));
+    _this.state = {
+      options: []
+    };
+    return _this;
+  }
+
+  _createClass(IndecisionApp, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      try {
+        var json = localStorage.getItem('options');
+        var options = JSON.parse(json);
+
+        if (options) {
+          this.setState(function () {
+            return {
+              options: options
+            };
+          });
+        }
+      } catch (error) {
+        console.log('Not valid data');
+      }
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (prevState.options.length !== this.state.options.length) {
+        var json = JSON.stringify(this.state.options);
+        localStorage.setItem('options', json);
+      }
+    }
+  }, {
+    key: "removeAll",
+    value: function removeAll() {
+      this.setState(function () {
+        return {
+          options: []
+        };
+      });
+    }
+  }, {
+    key: "handlePick",
+    value: function handlePick() {
+      var randomNumber = Math.floor(Math.random() * this.state.options.length);
+      var arr = document.querySelector(".options-list").getElementsByTagName("LI");
+
+      for (var i = 0; i < arr.length; i++) {
+        arr[i].style.background = "transparent";
+      }
+
+      arr[randomNumber].style.background = "#feca57";
+    }
+  }, {
+    key: "addOption",
+    value: function addOption(option) {
+      if (!option) {
+        return 'Enter valid value to add item';
+      } else if (this.state.options.indexOf(option) > -1) {
+        return 'This option already exists';
+      }
+
+      this.setState(function (prevState) {
+        return {
+          options: prevState.options.concat([option])
+        };
+      });
+    }
+  }, {
+    key: "removeOption",
+    value: function removeOption(optionToRemove) {
+      this.setState(function (prevState) {
+        return {
+          options: prevState.options.filter(function (option) {
+            return optionToRemove !== option;
+          })
+        };
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var title = "Indecision App";
+      var subtitle = "Put your life in the hands of a computer";
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        className: "main"
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Header__["a" /* default */], {
+        title: title,
+        subtitle: subtitle
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Action__["a" /* default */], {
+        hasOptions: this.state.options.length > 0,
+        handlePick: this.handlePick
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Options__["a" /* default */], {
+        options_number: this.state.options,
+        removeOption: this.removeOption
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__AddOption__["a" /* default */], {
+        hasOptions: this.state.options.length > 0,
+        addOption: this.addOption,
+        removeAll: this.removeAll
+      }));
+    }
+  }]);
+
+  return IndecisionApp;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["a"] = (IndecisionApp);
 
 /***/ })
 /******/ ]);
