@@ -12,6 +12,7 @@
     "path": "^0.12.7",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-modal": "^3.10.1",
     "styled-components": "^4.3.2",
     "webpack": "3.11.0"
   },
@@ -23,6 +24,7 @@
     "@babel/cli": "^7.6.0",
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
-    "@babel/preset-react": "^7.0.0"
+    "@babel/preset-react": "^7.0.0",
+    "babel-plugin-transform-class-properties": "^6.24.1"
   }
 }
