@@ -10,7 +10,6 @@ export default class AddOption extends React.Component {
     }
     addOption(e){
       e.preventDefault();
-  
       const option = e.target.elements.option.value.trim();
       const error = this.props.addOption(option);
       this.setState(()=>({ error }));
