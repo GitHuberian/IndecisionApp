@@ -18,7 +18,11 @@
   },
   "scripts": {
     "serve": "live-server public/",
-    "build-wp": "webpack --config webpack.config.js --watch"
+    "build-wp": "webpack --config webpack.config.js --watch",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
@@ -29,6 +33,7 @@
   },
   "engines": {
     "npm": "6.9.0",
-    "node": "10.16.3"
+    "node": "10.16.3",
+    "yarn": "1.17.3"
   }
 }
