@@ -7,6 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "babel-loader": "^8.0.6",
+    "express": "^4.17.1",
     "global": "^4.4.0",
     "live-server": "^1.2.1",
     "path": "^0.12.7",
@@ -19,10 +20,9 @@
   "scripts": {
     "serve": "live-server public/",
     "build-wp": "webpack --config webpack.config.js --watch",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "build:prod": "webpack -p --env production",
+    "start": "node server/server.js",
+    "heroku-postbuild": "yarn run build:prod"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
